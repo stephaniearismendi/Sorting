@@ -4,26 +4,30 @@
 #include "ordenacion.hpp"
 
 template <class Key>
-class Selection : public Sort
+class SelectionSort : public Sort<Key>
 {
 public:
-    void sort(std::vector<int> &v)
+    void sort(std::vector<Key> &v)
     {
         int min_aux = 0;
-        for (unsigned int i = 0; i < v.size() - 1; i++)
+        int iter = 0;
+        for (int i = 0; i < v.size() - 1; i++)
         {
             min_aux = i;
             for (int j = i + 1; j < v.size(); j++)
             {
-                if (myVector[j] < myVector[vectMin])
+                if (v[j] < v[min_aux])
                 {
                     min_aux = j;
                 }
             }
-            v = swap(v, i, min_aux);
+            v = swap(min_aux, i, v);
+            std::cout << "Iteracion " << iter + 1 << ": ";
+            this->print(v);
+            iter++;
         }
     }
-    std::vector<int> swap(int &a, int &b, std::vector<int> &v)
+    std::vector<Key> swap(int &a, int &b, std::vector<Key> &v)
     {
         int temp = v[a];
         v[a] = v[b];
