@@ -94,8 +94,8 @@ int main()
             std::cout << std::endl;
             std::cout << "Vector after sorting: " << std::endl;
             selection->print(v);
-            sleep(4);
-            system("clear");
+            // sleep(4);
+            // system("clear");
         }
         else
         {

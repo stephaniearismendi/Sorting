@@ -9,26 +9,16 @@ class ShellSort : public Sort<Key>
 public:
     void sort(std::vector<Key> &v)
     {
-        float h = askConstant();
-        while (h < v.size() / 3)
-        {
-            h = 3 * h + 1;
-        }
-        while (h >= 1)
-        {
-            for (int i = h; i < v.size(); i++)
-            {
-                for (int j = i; j >= h && v[j] < v[j - h]; j -= h)
-                {
-                    v = swap(j, j - h, v);
-                    std::cout << "Iteracion " << iter + 1 << ": ";
-                    this->print(v);
-                    iter++;
-                }
-            }
-            h = h / 3;
+        float h = askConstant() * v.size();
+        while(h > 0){
+            h = h / 2;
+            deltaSort(v, h);
+            std::cout << "iteracion " << iter + 1 << ": ";
+            this->print(v);
+            iter++;
         }
     }
+
     std::vector<Key> swap(int a, int b, std::vector<Key> &v)
     {
         int temp = v[a];
@@ -36,6 +26,30 @@ public:
         v[b] = temp;
         return v;
     }
+
+    void deltaSort(std::vector<Key> &v, float h)
+    {
+        bool aux = false;;
+        Key x;
+        int j = 0;
+        for(int i = 0; i < v.size(); i++)
+        {
+            aux = false;
+            x = v[i];
+            j = i;  
+            while(j >= h && v[j - h] > x)
+            {
+                v[j] = v[j - h];
+                j -= h;
+                aux = true;
+            }
+            if(aux)
+            {
+                v[j] = x;
+            }
+        }
+    }
+
     float askConstant()
     {
         bool ok = false;
