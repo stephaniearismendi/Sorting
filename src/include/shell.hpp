@@ -10,7 +10,7 @@ public:
     void sort(std::vector<Key> &v)
     {
         float h = askConstant() * v.size();
-        while(h > 0){
+        while(h > 1){
             h = h / 2;
             deltaSort(v, h);
             std::cout << "iteracion " << iter + 1 << ": ";
@@ -32,7 +32,7 @@ public:
         bool aux = false;;
         Key x;
         int j = 0;
-        for(int i = 0; i < v.size(); i++)
+        for(int i = h; i < v.size(); i++)
         {
             aux = false;
             x = v[i];
