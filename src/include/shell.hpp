@@ -19,14 +19,6 @@ public:
         }
     }
 
-    std::vector<Key> swap(int a, int b, std::vector<Key> &v)
-    {
-        int temp = v[a];
-        v[a] = v[b];
-        v[b] = temp;
-        return v;
-    }
-
     void deltaSort(std::vector<Key> &v, float h)
     {
         bool aux = false;;
